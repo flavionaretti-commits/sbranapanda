@@ -93,6 +93,17 @@ body.dark {
 .modeButton img { width:min(78%,155px); height:145px; object-fit:contain; filter:drop-shadow(0 8px 12px rgba(0,0,0,.12)); }
 .modeButton span { font-family:Georgia,serif; font-size:clamp(1rem,2.7vw,1.5rem); font-weight:700; text-align:center; line-height:1.05; margin-top:4px; }
 .modeButton small { color:var(--muted); margin-top:7px; min-height:1.25em; }
+
+.modeTitle { display:none; }
+
+/* I due SVG originali contengono già il nome della modalità.
+   Nascondiamo quindi il titolo HTML per evitare il doppione visivo. */
+.italianButton img, .challengeButton img { display:block; }
+
+/* Centra perfettamente l'icona del tasto Categorie anche quando la label è nascosta. */
+.wideIcon { align-items:center; justify-content:center; }
+.wideIcon > span[aria-hidden="true"] { display:grid; place-items:center; line-height:1; }
+.wideIcon .iconLabel { margin:0; }
 .italianButton span { color:var(--red); }
 .challengeButton span { color:#d5c737; font-size:clamp(1.4rem,3.3vw,2rem); }
 .modeButton.selected { background:color-mix(in srgb, var(--panel-solid) 84%, transparent); box-shadow:0 0 0 3px rgba(45,167,86,.45), 0 12px 38px rgba(33,103,56,.13); transform:translateY(-3px); }
@@ -159,7 +170,7 @@ body.dark .modeBadge, body.dark .speechBubble.result { color:#7be59a; }
   :root { --topbar-h: 56px; }
   .appShell { padding:calc(var(--topbar-h) + 9px) 8px 10px; }
   .brandSub, .iconLabel { display:none; }
-  .wideIcon { width:39px; padding:0; justify-content:center; }
+  .wideIcon { width:39px; padding:0; display:grid; place-items:center; }
   .topActions { gap:5px; }
   .gameCard { min-height:calc(100dvh - var(--topbar-h) - 18px); border-radius:22px; padding:16px 11px; }
   .heroHeader h1 { font-size:clamp(2rem,11vw,3rem); }
@@ -183,6 +194,7 @@ body.dark .modeBadge, body.dark .speechBubble.result { color:#7be59a; }
   .topbar { height:calc(var(--topbar-h) + env(safe-area-inset-top)); }
   .iconBtn { min-width:34px; width:34px; height:34px; padding:0; }
   .brandSub, .iconLabel { display:none; }
+  .wideIcon { width:34px; padding:0; display:grid; place-items:center; }
   .gameCard { width:min(100%,980px); min-height:calc(100dvh - var(--topbar-h) - 12px); height:calc(100dvh - var(--topbar-h) - 12px); padding:8px 18px; border-radius:18px; }
   .heroHeader { position:absolute; top:9px; left:18px; z-index:4; text-align:left; }
   .heroHeader h1 { font-size:clamp(1.2rem,4.4vw,2rem); font-weight:500; }
