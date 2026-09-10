@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Sfida">
+  <defs>
+    <radialGradient id="shadow" cx="50%" cy="50%" r="52%">
+      <stop offset="72%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.22"/>
+    </radialGradient>
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#d8e7d6"/>
+      <stop offset="15%" stop-color="#f7f9f6"/>
+      <stop offset="40%" stop-color="#6ea86a"/>
+      <stop offset="70%" stop-color="#2e7134"/>
+      <stop offset="100%" stop-color="#a6c7a0"/>
+    </linearGradient>
+    <radialGradient id="face" cx="38%" cy="28%" r="75%">
+      <stop offset="0%" stop-color="#58bc63"/>
+      <stop offset="52%" stop-color="#2f8a3b"/>
+      <stop offset="100%" stop-color="#1c5f27"/>
+    </radialGradient>
+    <radialGradient id="innerShade" cx="50%" cy="52%" r="66%">
+      <stop offset="55%" stop-color="#000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.25"/>
+    </radialGradient>
+    <radialGradient id="centerLight" cx="40%" cy="34%" r="52%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.32"/>
+      <stop offset="55%" stop-color="#fff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="50%" stop-color="#e4c14f"/>
+      <stop offset="100%" stop-color="#b9952d"/>
+    </linearGradient>
+    <linearGradient id="goldHi" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff4be" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#fff4be" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="110" cy="110" r="96" fill="url(#shadow)"/>
+  <circle cx="110" cy="110" r="89" fill="url(#rim)"/>
+  <circle cx="110" cy="110" r="83" fill="url(#face)"/>
+  <circle cx="110" cy="110" r="72" fill="#ffffff" opacity="0.06"/>
+  <circle cx="110" cy="110" r="83" fill="url(#innerShade)"/>
+  <ellipse cx="92" cy="72" rx="76" ry="50" fill="url(#centerLight)"/>
+  <path d="M109 69c0-7 5-12 12-12 7 0 12 5 12 12v52c4-2 8-3 12-3 15 0 26 10 26 23 0 13-11 23-26 23-15 0-26-8-27-21-1 13-12 21-27 21-15 0-26-10-26-23 0-13 11-23 26-23 4 0 8 1 12 3V94c-4 3-8 4-13 4-13 0-23-9-23-22 0-14 10-24 24-24 8 0 15 3 20 9 5-6 12-9 20-9 14 0 24 10 24 24 0 13-10 22-23 22-5 0-9-1-13-4V69zM95 131c-7 0-12 4-12 10 0 5 5 10 12 10s12-5 12-10c0-6-5-10-12-10zm57 0c-7 0-12 4-12 10 0 5 5 10 12 10s12-5 12-10c0-6-5-10-12-10z" fill="url(#gold)"/>
+  <ellipse cx="114" cy="78" rx="12" ry="8" fill="url(#goldHi)" opacity="0.75"/>
+  <ellipse cx="96" cy="137" rx="10" ry="6" fill="url(#goldHi)" opacity="0.55"/>
+  <ellipse cx="153" cy="137" rx="10" ry="6" fill="url(#goldHi)" opacity="0.55"/>
+  <path d="M110 68v63" stroke="#fff3a8" stroke-opacity="0.45" stroke-width="4.5" stroke-linecap="round"/>
+  <path d="M38 72c14-24 42-39 72-39 12 0 24 2 35 7" fill="none" stroke="#ffffff" stroke-opacity="0.42" stroke-width="6" stroke-linecap="round"/>
+</svg>
