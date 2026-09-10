@@ -1,4 +1,4 @@
-const CACHE = 'sbranapanda-v6';
+const CACHE = 'sbranapanda-v7';
 const APP_SHELL = [
   './',
   './index.html',
@@ -7,7 +7,7 @@ const APP_SHELL = [
   './manifest.json',
   './assets/panda.png',
   './assets/musica-italiana-badge.svg',
-  './assets/sfida-badge.svg',
+  './assets/sfida-icon.png',
   './assets/estrazione.wav',
   './assets/intro.wav',
   './assets/pop.wav',
