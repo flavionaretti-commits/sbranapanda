@@ -40,12 +40,16 @@
   <circle cx="110" cy="110" r="83" fill="url(#face)"/>
   <circle cx="110" cy="110" r="83" fill="url(#innerShade)"/>
   <ellipse cx="92" cy="72" rx="76" ry="50" fill="url(#faceGloss)"/>
-  <circle cx="83" cy="140" r="19" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="2"/>
-  <circle cx="138" cy="140" r="19" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="2"/>
-  <rect x="93" y="73" width="14" height="67" rx="7" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="1.2"/>
-  <rect x="148" y="58" width="14" height="82" rx="7" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="1.2"/>
-  <path d="M100 78 C114 70, 131 67, 155 67 L155 83 C132 83, 116 87, 100 96 Z" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="1.2"/>
-  <ellipse cx="79" cy="133" rx="8.5" ry="5" fill="#fff5c9" opacity="0.42"/>
-  <ellipse cx="134" cy="133" rx="8.5" ry="5" fill="#fff5c9" opacity="0.42"/>
+
+  <!-- single eighth note -->
+  <g transform="translate(0,2)">
+    <ellipse cx="92" cy="138" rx="24" ry="19" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="2.5"/>
+    <rect x="111" y="68" width="17" height="72" rx="8.5" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="1.8"/>
+    <path d="M119 70 C136 60, 151 58, 165 61 L165 80 C151 77, 136 79, 119 88 Z" fill="url(#gold)" stroke="url(#goldEdge)" stroke-width="1.8" stroke-linejoin="round"/>
+    <ellipse cx="86" cy="132" rx="10" ry="6" fill="#fff5c9" opacity="0.42"/>
+    <path d="M115 73 L115 134" stroke="#fff4b8" stroke-opacity="0.42" stroke-width="3.8" stroke-linecap="round"/>
+    <path d="M123 76 C136 68, 147 66, 158 68" fill="none" stroke="#fff4b8" stroke-opacity="0.28" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
   <path d="M40 72c14-24 42-39 72-39 12 0 24 2 35 7" fill="none" stroke="#ffffff" stroke-opacity="0.42" stroke-width="6" stroke-linecap="round"/>
 </svg>
