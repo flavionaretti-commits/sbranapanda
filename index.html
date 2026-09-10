@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#f8fbfc">
+  <meta name="color-scheme" content="light dark">
+  <title>Sbranapanda</title>
+  <meta name="description" content="Sbranapanda - party game musicale ideato da Flavio Naretti">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="splash" class="splash" aria-hidden="true">
+    <div class="splashGlow"></div>
+    <img src="assets/panda.svg" class="splashPanda" alt="">
+    <div class="splashTitle">SBRANAPANDA</div>
+  </div>
+
+  <div class="appShell">
+    <header class="topbar">
+      <div class="brandMini" aria-label="Sbranapanda">
+        <span class="brandWord">SBRANAPANDA</span>
+        <span class="brandSub">party game</span>
+      </div>
+      <div class="topActions">
+        <button id="categoriesBtn" class="iconBtn wideIcon" type="button" aria-label="Gestisci categorie" title="Categorie">
+          <span aria-hidden="true">☷</span><span class="iconLabel">Categorie</span>
+        </button>
+        <button id="soundBtn" class="iconBtn" type="button" aria-label="Disattiva suoni" title="Suoni">🔊</button>
+        <button id="themeBtn" class="iconBtn" type="button" aria-label="Attiva modalità notte" title="Giorno / notte">☾</button>
+        <button id="fullscreenBtn" class="iconBtn" type="button" aria-label="Schermo intero" title="Schermo intero">⛶</button>
+        <button id="infoBtn" class="iconBtn" type="button" aria-label="Informazioni" title="Informazioni">i</button>
+      </div>
+    </header>
+
+    <main class="gameCard" id="gameCard">
+      <section class="heroHeader">
+        <h1>SBRANAPANDA</h1>
+        <p>Un gioco ideato da Flavio Naretti</p>
+      </section>
+
+      <section class="gameArea" aria-label="Area di gioco">
+        <button class="modeButton italianButton" id="italianBtn" type="button" data-mode="italian" aria-pressed="false">
+          <img src="assets/musica-italiana.svg" alt="">
+          <span>MUSICA ITALIANA</span>
+          <small id="italianCount"></small>
+        </button>
+
+        <div class="pandaZone">
+          <div id="speechBubble" class="speechBubble" role="status" aria-live="polite"></div>
+          <button id="pandaBtn" class="pandaButton" type="button" aria-label="Tocca il panda per estrarre una categoria">
+            <img src="assets/panda.svg" alt="Panda di Sbranapanda" draggable="false">
+          </button>
+          <div id="modeBadge" class="modeBadge">Scegli una modalità</div>
+        </div>
+
+        <button class="modeButton challengeButton" id="challengeBtn" type="button" data-mode="challenge" aria-pressed="false">
+          <img src="assets/sfida.svg" alt="">
+          <span>SFIDA!</span>
+          <small id="challengeCount"></small>
+        </button>
+      </section>
+
+      <section class="instruction" id="instruction">
+        SCEGLI UNA MODALITÀ, POI TOCCA IL PANDA PER ESTRARRE A CASO LA CATEGORIA
+      </section>
+
+      <div class="statusLine">
+        <span id="categoryStatus"></span>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="categoriesDialog" class="modal">
+    <div class="modalCard categoryModalCard">
+      <div class="modalHeader">
+        <div>
+          <h2>Categorie</h2>
+          <p>Attiva, disattiva, modifica o aggiungi le categorie del gioco.</p>
+        </div>
+        <button class="closeBtn" data-close="categoriesDialog" type="button" aria-label="Chiudi">×</button>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Tipi di categorie">
+        <button id="tabItalian" class="tab active" type="button" role="tab" aria-selected="true" data-tab="italian">Musica italiana</button>
+        <button id="tabChallenge" class="tab" type="button" role="tab" aria-selected="false" data-tab="challenge">Sfida!</button>
+      </div>
+
+      <div class="categoryTools">
+        <button id="selectAllBtn" class="smallBtn" type="button">Seleziona tutte</button>
+        <button id="selectNoneBtn" class="smallBtn" type="button">Deseleziona tutte</button>
+        <span class="spacer"></span>
+        <span id="activeSummary" class="activeSummary"></span>
+      </div>
+
+      <div id="categoryList" class="categoryList"></div>
+
+      <form id="addCategoryForm" class="addForm">
+        <label for="newCategory">Nuova categoria</label>
+        <div class="addRow">
+          <input id="newCategory" maxlength="60" autocomplete="off" placeholder="Scrivi il nome…">
+          <button class="primaryBtn" type="submit">＋ Aggiungi</button>
+        </div>
+      </form>
+
+      <div class="modalFooter">
+        <button id="resetCategoriesBtn" class="dangerGhostBtn" type="button">Ripristina predefinite</button>
+        <button class="primaryBtn" data-close="categoriesDialog" type="button">Fine</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="infoDialog" class="modal">
+    <div class="modalCard infoCard">
+      <div class="modalHeader">
+        <div><h2>Sbranapanda</h2><p>Guida per il party game musicale.</p></div>
+        <button class="closeBtn" data-close="infoDialog" type="button" aria-label="Chiudi">×</button>
+      </div>
+      <div class="infoBody">
+        <p><strong>Come si usa:</strong> scegli <em>Musica italiana</em> oppure <em>Sfida!</em>, poi tocca il panda. Sbranapanda estrarrà casualmente una delle categorie attive e la pronuncerà.</p>
+        <p>Con <strong>Categorie</strong> puoi decidere quali voci usare, rinominarle, eliminarle o aggiungerne di nuove. Le modifiche restano memorizzate su questo dispositivo.</p>
+        <p>L'estrazione segue il comportamento del progetto Scratch originale: una categoria può uscire nuovamente in estrazioni successive.</p>
+      </div>
+      <div class="credits">Ideazione e programmazione originale Scratch: <strong>Flavio Naretti</strong></div>
+      <div class="modalFooter"><button class="primaryBtn" data-close="infoDialog" type="button">Chiudi</button></div>
+    </div>
+  </dialog>
+
+  <dialog id="confirmDialog" class="modal compactModal">
+    <div class="modalCard confirmCard">
+      <h2>Ripristinare le categorie?</h2>
+      <p>Verranno ripristinati nomi e selezioni originali. Le categorie aggiunte da te saranno eliminate.</p>
+      <div class="modalFooter">
+        <button id="cancelResetBtn" class="smallBtn" type="button">Annulla</button>
+        <button id="confirmResetBtn" class="dangerBtn" type="button">Ripristina</button>
+      </div>
+    </div>
+  </dialog>
+
+  <template id="categoryRowTemplate">
+    <div class="categoryRow">
+      <label class="switch" title="Attiva / disattiva">
+        <input class="categoryToggle" type="checkbox">
+        <span class="slider"></span>
+      </label>
+      <input class="categoryName" maxlength="60" aria-label="Nome categoria">
+      <button class="rowIcon deleteCategory" type="button" aria-label="Elimina categoria" title="Elimina">🗑</button>
+    </div>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
