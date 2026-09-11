@@ -73,6 +73,7 @@
     extraction: new Audio('assets/estrazione.wav'),
     pop: new Audio('assets/pop.wav')
   };
+  Object.values(sounds).forEach(audio => { audio.preload = 'auto'; try { audio.load(); } catch (_) {} });
   sounds.intro.volume = 0.72;
   sounds.extraction.volume = 0.92;
   sounds.pop.volume = 1;
@@ -83,8 +84,11 @@
   let extracting = false;
   let soundOn = loadBoolean(STORAGE.sound, true);
   let bubbleTimer = null;
+  let speechUnlocked = false;
+  let preferredVoice = null;
 
   initTheme();
+  initSpeech();
   updateSoundUI();
   renderCounts();
   bindEvents();
@@ -101,6 +105,7 @@
   }
 
   function bindEvents() {
+    document.addEventListener('pointerdown', unlockMedia, { once:true });
     els.italianBtn.addEventListener('click', () => chooseMode('italian'));
     els.challengeBtn.addEventListener('click', () => chooseMode('challenge'));
     els.pandaBtn.addEventListener('click', extractCategory);
@@ -231,15 +236,69 @@
 
   function speakItalian(text) {
     if (!soundOn || !('speechSynthesis' in window)) return;
+    if (!speechUnlocked) unlockSpeech();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = 'it-IT';
     utterance.rate = 0.82;
     utterance.pitch = 0.68; // leggermente più "gigante", come la voce GIANT di Scratch
     utterance.volume = 1;
-    const voices = speechSynthesis.getVoices();
-    const italianVoice = voices.find(v => /^it(-|_)/i.test(v.lang)) || voices.find(v => /ital/i.test(v.name));
-    if (italianVoice) utterance.voice = italianVoice;
-    speechSynthesis.speak(utterance);
+    if (preferredVoice) utterance.voice = preferredVoice;
+    try {
+      speechSynthesis.cancel();
+      speechSynthesis.speak(utterance);
+    } catch (_) {}
+  }
+
+  function initSpeech() {
+    if (!('speechSynthesis' in window)) return;
+    const updateVoices = () => {
+      const voices = speechSynthesis.getVoices();
+      preferredVoice = voices.find(v => /^it(-|_)/i.test(v.lang)) || voices.find(v => /ital/i.test(v.name)) || null;
+    };
+    updateVoices();
+    if (typeof speechSynthesis.addEventListener === 'function') {
+      speechSynthesis.addEventListener('voiceschanged', updateVoices);
+    } else if ('onvoiceschanged' in speechSynthesis) {
+      speechSynthesis.onvoiceschanged = updateVoices;
+    }
+  }
+
+  function unlockSpeech() {
+    if (!('speechSynthesis' in window) || speechUnlocked === true) return;
+    try {
+      const primer = new SpeechSynthesisUtterance(' ');
+      primer.volume = 0;
+      primer.rate = 1;
+      primer.pitch = 1;
+      if (preferredVoice) primer.voice = preferredVoice;
+      speechSynthesis.speak(primer);
+      window.setTimeout(() => { try { speechSynthesis.cancel(); } catch (_) {} }, 40);
+      speechUnlocked = true;
+    } catch (_) {}
+  }
+
+  function unlockMedia() {
+    unlockSpeech();
+    if (!soundOn) return;
+    Object.values(sounds).forEach(audio => {
+      try {
+        const wasMuted = audio.muted;
+        audio.muted = true;
+        audio.currentTime = 0;
+        const p = audio.play();
+        if (p?.then) {
+          p.then(() => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.muted = wasMuted;
+          }).catch(() => { audio.muted = wasMuted; });
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          audio.muted = wasMuted;
+        }
+      } catch (_) {}
+    });
   }
 
   function renderCategories() {

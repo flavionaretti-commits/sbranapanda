@@ -1,4 +1,4 @@
-const CACHE = 'sbranapanda-v7';
+const CACHE = 'sbranapanda-v8';
 const APP_SHELL = [
   './',
   './index.html',
